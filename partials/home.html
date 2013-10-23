@@ -1,0 +1,18 @@
+
+<div class="topcoat-overlay-bg"></div>
+<aside class="topcoat-overlay">
+  <form id="convertor" ng-submit="convertPDF()">
+      <input type="url" class="topcoat-text-input" ng-model="URLText" placeholder="Enter Site to convert " value="">
+  	</form>
+  	<div id="followingBallsG" ng-show="showProcessingIcon">
+	<div id="followingBallsG_1" class="followingBallsG">
+	</div>
+	<div id="followingBallsG_2" class="followingBallsG">
+	</div>
+	<div id="followingBallsG_3" class="followingBallsG">
+	</div>
+	<div id="followingBallsG_4" class="followingBallsG">
+	</div>
+	</div> 
+  	<p><a ng-href="http://localhost:8888/topcoat-boilerplate/document.pdf" ng-show="showDownloadLink">Download PDF</a></p>
+</aside>

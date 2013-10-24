@@ -25,7 +25,7 @@ webApp.factory('appSession', function($http){
     }
 });
 //controller
-webApp.controller('appController', function($scope, $location, $templateCache, appSession){
+webApp.controller('appController', function($scope, $location, appSession){
         
         $scope.URLText;
         $scope.showDownloadLink = false;
@@ -50,11 +50,9 @@ webApp.controller('appController', function($scope, $location, $templateCache, a
             $scope.showErrorConsole = true;
             $scope.ErrorMessage = data;
         };
-        $scope.clearCache = function() { 
-            $templateCache.removeAll();
-          }
+
         $scope.convertPDF = function(){
-          $scope.clearCache();
+        
           $scope.showProcessingIcon = true;
           appSession.convertToPDF($scope.URLText).success($scope.displaySuccess).error($scope.displayError);
         };
@@ -67,8 +65,4 @@ webApp.controller('appController', function($scope, $location, $templateCache, a
         };
 
 });
-webApp.run(function($rootScope, $templateCache) {
-   $rootScope.$on('$viewContentLoaded', function() {
-      $templateCache.removeAll();
-   });
-});
+

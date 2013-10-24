@@ -142,7 +142,6 @@ input{
   bottom:0;
   left:0;
   background-color: rgba(88,90,92,0.7);
-  box-shadow: inset 0px 0px 115px 0px #000;
   z-index: 5;
 }
 
@@ -150,8 +149,8 @@ input{
 position:relative;
 width:256px;
 height:20px;
-left: 85px;
-top: 10px;
+top: 20px;
+margin: auto;
 }
 
 .followingBallsG{
@@ -159,8 +158,8 @@ background-color:#000000;
 position:absolute;
 top:0;
 left:0;
-width:20px;
-height:20px;
+width:5px;
+height:5px;
 -moz-border-radius:10px;
 -moz-animation-name:bounce_followingBallsG;
 -moz-animation-duration:3.2s;

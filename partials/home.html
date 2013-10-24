@@ -2,7 +2,7 @@
 <div class="topcoat-overlay-bg"></div>
 <aside class="topcoat-overlay">
   <form id="convertor" ng-submit="convertPDF()">
-      <input type="url" class="topcoat-text-input" ng-model="URLText" placeholder="Enter Site to convert " value="">
+      <input type="url" class="topcoat-text-input" ng-model="URLText" placeholder="http://enter.site.url" value="">
   	</form>
   	<div id="followingBallsG" ng-show="showProcessingIcon">
 	<div id="followingBallsG_1" class="followingBallsG">
@@ -14,5 +14,9 @@
 	<div id="followingBallsG_4" class="followingBallsG">
 	</div>
 	</div> 
-  	<p><a ng-href="http://localhost:8888/topcoat-boilerplate/document.pdf" ng-show="showDownloadLink">Download PDF</a></p>
-</aside>
+	<p>
+			<a download="document.pdf" href="http://frozonfreak.in/html-to-pdf-conversion/document.pdf" ng-show="showDownloadLink"><button class="topcoat-button--cta">Download PDF</button></a>
+			<span ng-show="showErrorConsole">{{ErrorMessage}}</span>
+	</p>
+
+  	

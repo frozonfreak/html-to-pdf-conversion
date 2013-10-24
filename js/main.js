@@ -11,7 +11,7 @@ webApp.config(function($stateProvider, $urlRouterProvider) {
       controller: 'appController',
     })
     // For any unmatched url, redirect to /state1
-     $urlRouterProvider.otherwise("/404");
+     $urlRouterProvider.otherwise("/");
 
 });
 webApp.factory('appSession', function($http){
@@ -25,24 +25,36 @@ webApp.factory('appSession', function($http){
     }
 });
 //controller
-webApp.controller('appController', function($scope, $location, appSession){
+webApp.controller('appController', function($scope, $location, $templateCache, appSession){
         
         $scope.URLText;
         $scope.showDownloadLink = false;
         $scope.showProcessingIcon = false;
+        $scope.showErrorConsole = false;
+        $scope.ErrorMessage='';
         $scope.displaySuccess = function(data, status){
             $scope.showProcessingIcon = false;
+            
             if(data['status'] == 1){
               $scope.showDownloadLink = true;
+            }
+            else{
+              $scope.showErrorConsole = true;
+              $scope.ErrorMessage = data['status'];
             }
             console.log(data);
         };
         $scope.displayError = function(data, status){
             $scope.showProcessingIcon = false;
             console.log(data);
-            
+            $scope.showErrorConsole = true;
+            $scope.ErrorMessage = data;
         };
+        $scope.clearCache = function() { 
+            $templateCache.removeAll();
+          }
         $scope.convertPDF = function(){
+          $scope.clearCache();
           $scope.showProcessingIcon = true;
           appSession.convertToPDF($scope.URLText).success($scope.displaySuccess).error($scope.displayError);
         };
@@ -54,4 +66,9 @@ webApp.controller('appController', function($scope, $location, appSession){
                 
         };
 
+});
+webApp.run(function($rootScope, $templateCache) {
+   $rootScope.$on('$viewContentLoaded', function() {
+      $templateCache.removeAll();
+   });
 });
